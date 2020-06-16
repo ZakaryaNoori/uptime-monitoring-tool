@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+html {
+  font-size: 62.5%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  color: #262A2D;
+  line-height: 1.5;
+  font-size: 1rem; }
+
+.h-100 {
+  height: 100%;
+  min-height: 100%; }
+
+.main-heading {
+  font-size: 9rem;
+  line-height: 1; }
+
+.bg-light {
+  background-color: #C2D1D7; }
+
+.form-control {
+  padding: 25px;
+  box-shadow: 0 0 0 10 rgba(38, 42, 45, 0.02);
+  width: 100%;
+  border: none;
+  border-radius: 7px;
+  font-family: inherit;
+  outline: none;
+  font-size: 1.4rem;
+  color: inherit; }
+  .form-control::placeholder {
+    color: #bebfc0;
+    font-size: 1.4rem; }
+
+.btn {
+  border: 1px solid #3D5087;
+  background-color: #3D5087;
+  color: white; }
+
+.position-relative {
+  position: relative; }
+
+.pointer {
+  cursor: pointer; }
+
+#app {
+  height: 100vh;
+  font-size: 1.4rem; }
+
+#home {
+  height: 100%; }
+  #home .info-box {
+    margin-bottom: 20vh; }
+  #home p {
+    font-size: 1.6rem; }
+  #home .check-btn {
+    position: absolute;
+    right: 10px;
+    height: 75%;
+    border-radius: 7px;
+    outline: none; }
+  #home .input-box {
+    width: 45rem; }
