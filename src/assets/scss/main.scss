@@ -31,6 +31,9 @@ body {
 .bg-light {
     background-color: #C2D1D7;
 }
+.bg-danger {
+    background-color: #FEF0F5;
+}
 
 .form-control {
     padding: 25px;
@@ -60,6 +63,10 @@ body {
 
 .pointer {
     cursor: pointer;
+}
+
+.text-danger {
+    color: #dc3545;
 }
 
 #app {

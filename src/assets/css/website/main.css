@@ -23,6 +23,9 @@ body {
 .bg-light {
   background-color: #C2D1D7; }
 
+.bg-danger {
+  background-color: #FEF0F5; }
+
 .form-control {
   padding: 25px;
   box-shadow: 0 0 0 10 rgba(38, 42, 45, 0.02);
@@ -47,6 +50,9 @@ body {
 
 .pointer {
   cursor: pointer; }
+
+.text-danger {
+  color: #dc3545; }
 
 #app {
   height: 100vh;
