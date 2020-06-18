@@ -6,13 +6,15 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev scss --watch",
+    "start": "concurrently --kill-others \"npm run dev\" \"npm run scss\"",
     "scss": "node-sass --watch src/assets/scss/main.scss -o src/assets/css/website",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "scss": "^0.2.4",
     "vue": "^2.5.2",
+    "vue-axios": "^2.1.5",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
@@ -26,6 +28,7 @@
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "chalk": "^2.0.1",
+    "concurrently": "^5.2.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^3.0.0",
