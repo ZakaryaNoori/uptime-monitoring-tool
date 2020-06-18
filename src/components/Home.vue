@@ -7,17 +7,33 @@
             <div class="info-box">
               <h1 class="my-0 main-heading">Is it <br> down ?</h1>
               <p class="my-5">Ping your website form 5 global locations<br> and get to know is it down instantly</p>
-              <div class="position-relative d-flex align-items-center input-box">
-                <input type="url" placeholder="Enter domain" class="form-control">
-                <router-link to="/result" tag="button" class="pointer btn check-btn">
-                  <img src="src/assets/icons/arrow_icon.svg" alt="arrow">
-                </router-link>
-              </div>
+              <form 
+                class="position-relative d-flex align-items-center input-box" 
+                @submit.prevent="checkForm"
+                method="post">
+                <input 
+                  type="" 
+                  placeholder="Enter domain eg. (https://www.example.com)" 
+                  class="form-control"
+                  v-model="url">
+                <a class="pointer btn check-btn d-flex align-items-center px-3" @click="checkForm">
+                  <i class="fas fa-arrow-right" style="color: white"></i>
+                </a>
+              </form>
+              <small class="text-danger" v-if="errors.length > 0">
+                {{ errors[0] }}
+              </small>
             </div>
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="bg-white"></div>
+          <div class="bg-white">
+            <div class="p-4">
+              <ul v-for="url in urls" :key="url">
+                <li>{{ url }}</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -29,7 +45,58 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      url: null,
+      errors: [],
+      isValidUrl: true,
+      urls: []
+    }
+  },
+  mounted () {
+    this.urls = JSON.parse(localStorage.getItem('urls'))
+  },
+  methods: {
+    checkForm(e) {
+      this.errors = []
+
+      if(!this.url) {
+        this.errors.push('URL field cant be empty')
+        return false
+      } else if (!this.validUrl(this.url)) {
+        this.errors.push('Valid url required.');
+        return false
+      }
+
+      e.preventDefault()
+      if(localStorage.getItem('urls')) {
+        let urls = JSON.parse(localStorage.getItem('urls'))
+        if(!urls.includes(this.url) && urls.length <= 6) {
+          urls.push(this.url)
+          localStorage.setItem('urls', JSON.stringify(urls))
+        }
+      } else {
+        localStorage.setItem('urls', JSON.stringify([this.url]))
+      }
+      this.$router.push({ path: 'result', query: { url: this.url } })
+      return true
+    },
+
+    /**
+     * Checks if email is valid or not.
+     */
+    validUrl(str) {
+      var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+      return !!pattern.test(str);
+    },
+  },
+
+  watch: {
+    url(value) {
+      this.validUrl(value)
     }
   }
 }
