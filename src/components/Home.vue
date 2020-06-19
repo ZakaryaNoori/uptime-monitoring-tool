@@ -69,7 +69,7 @@ export default {
       e.preventDefault()
       if(localStorage.getItem('urls')) {
         let urls = JSON.parse(localStorage.getItem('urls'))
-        if(!urls.includes(this.url) && urls.length <= 6) {
+        if(!urls.includes(this.url)) {
           urls.push(this.url)
           localStorage.setItem('urls', JSON.stringify(urls))
         }
