@@ -5,6 +5,12 @@ $main-color : #262A2D;
 
 html {
     font-size: 62.5%;
+    @media only screen and (max-width: 1024px) {
+        font-size: 58.5%
+    }
+    @media only screen and (max-width: 425px) {
+        font-size: 50%
+    }
 }
 
 body {
@@ -28,8 +34,18 @@ body {
     line-height: 1;
 }
 
+.secondary-heading {
+    font-size: 9.5rem;
+    line-height: 1.25;
+    font-weight: 500;
+}
+
 .bg-light {
     background-color: #C2D1D7;
+}
+
+.bg-success {
+    background-color: #F2F8FD;
 }
 .bg-danger {
     background-color: #FEF0F5;
@@ -51,6 +67,10 @@ body {
     }
 }
 
+.list {
+    list-style: none;
+}
+
 .btn {
     border: 1px solid #3D5087;
     background-color: #3D5087;
@@ -61,6 +81,10 @@ body {
     position: relative;
 }
 
+.w-100 {
+    width: 100%;
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -68,17 +92,63 @@ body {
 .text-danger {
     color: #dc3545;
 }
+.text-sm {
+    font-size: 1.7rem;
+    color: #9FA3A5
+}
+.text-md {
+    font-size: 3.7rem;
+}
+.text-center {
+    text-align: center;
+}
+
+.bg-white {
+    background-color: white
+}
+
+.url-item {
+    background-color: #eee;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    word-break: break-all;
+    height: 22vh;
+    font-size: 1.6rem;
+}
+
+.success-response {
+    background-color: #49D27B;
+    border-radius: 10px;
+    padding: 15px 20px;
+    color: white;
+}
+.time-response {
+    background-color: #3D5083;
+    border-radius: 10px;
+    padding: 15px 20px;
+    color: white;
+}
 
 #app {
     height: 100vh;
     font-size: 1.4rem;
 }
 
+.info-box {
+    margin-bottom: 20vh;
+    width: 60%
+}
+
+.response {
+    border-radius: 20px;
+    word-break: break-all;
+    height: max-content;
+    font-size: 1.6rem;
+    box-shadow: 3px 3px 10px #6468692f;
+}
+
 #home {
     height: 100%;
-    .info-box {
-        margin-bottom: 20vh;
-    }
     p {
         font-size: 1.6rem;
     }
@@ -91,5 +161,27 @@ body {
     }
     .input-box {
         width: 45rem;
+        @media only screen and (max-width: 568px) {
+            width: 24rem;
+        }
     }
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
+.fa-circle-notch {
+    animation: spin .8s ease infinite;
+    font-size: 4rem
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% { transform: rotate(360deg); }
 }
