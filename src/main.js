@@ -11,13 +11,13 @@ Vue.config.productionTip = false
 Vue.mixin({
   methods: {
     parseURL(url) {
-      console.log(url);
       let parsedURL = new URL(url)
-      console.log(parsedURL);
       return parsedURL
     }
   }
 })
+
+
 
 /* eslint-disable no-new */
 new Vue({
