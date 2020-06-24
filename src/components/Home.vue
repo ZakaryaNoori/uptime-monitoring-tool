@@ -27,10 +27,14 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="bg-white">
-            <div class="p-4">
-              <ul v-for="url in urls" :key="url">
-                <li>{{ url }}</li>
+          <div class="bg-white h-100">
+            <div class="p-5 d-flex align-items-center justify-content-center h-100">
+              <ul class="row list w-100 p-0">
+                <li v-for="(url, index) in urls" :key="index" class="col-lg-4 col-md-6 col-sm-12 col-xlg-3">
+                  <div class="p-5 url-item d-flex align-items-center" :style="{backgroundColor : colors[Math.round(Math.random() * 2)]}">
+                    {{ url }}
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -48,7 +52,12 @@ export default {
       url: null,
       errors: [],
       isValidUrl: true,
-      urls: []
+      urls: [],
+      colors: [
+        '#F0F5FD',
+        '#FEF0F5',
+        '#E9F5FE',
+      ]
     }
   },
   mounted () {
@@ -69,7 +78,11 @@ export default {
       e.preventDefault()
       if(localStorage.getItem('urls')) {
         let urls = JSON.parse(localStorage.getItem('urls'))
-        if(!urls.includes(this.url)) {
+        if(!urls.includes(this.url) && urls.length < 6) {
+          urls.push(this.url)
+          localStorage.setItem('urls', JSON.stringify(urls))
+        } else if(urls.length == 6) {
+          urls.shift()
           urls.push(this.url)
           localStorage.setItem('urls', JSON.stringify(urls))
         }
@@ -92,6 +105,11 @@ export default {
         '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
       return !!pattern.test(str);
     },
+    getRandomColor() {
+      let randOneToSix = Math.floor(Math.random() * 3) + 1
+      console.log('fdsjlk');
+      return this.colors[randOneToSix]
+    }
   },
 
   watch: {
