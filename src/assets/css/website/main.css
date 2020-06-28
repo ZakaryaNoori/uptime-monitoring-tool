@@ -101,6 +101,12 @@ body {
   padding: 15px 20px;
   color: white; }
 
+.danger-response {
+  background-color: #e45084;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: white; }
+
 .time-response {
   background-color: #3D5083;
   border-radius: 10px;

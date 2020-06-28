@@ -22,7 +22,15 @@
                             <span class="text-sm">From a global location</span>
                           </div>
                         </div>
-                        <span v-else>Status : down</span>
+                        <div v-else class="d-flex flex-column align-items-center p-5">
+                          <div class="danger-response mb-5">
+                            <i class="fas fa-arrow-down"></i>  
+                          </div>
+                          <div class="text-center">
+                            <span class="text-md">Down</span><br>
+                            <span class="text-sm">From a global location</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -75,16 +83,24 @@ export default {
         self.responseTime = time
         self.isUp = true
         self.isLoading = false
-        console.log("%c uppppppppppppppppppppppppppppppp", 'color: blue');
-        console.log("%c Response time : " + time/1000 +"s", 'color: green');
       } else if (this.readyState == 4 && this.status !== 200){
-        console.log("down");
+        time = new Date() - time
+        self.responseTime = time
+        self.isUp = false;
+        self.isLoading = false
       }
     }
-    xhr.open('HEAD', this.cors + this.$route.query.url)
+
+    xhr.open('HEAD', this.urlWithCors(this.$route.query.url))
 
     xhr.send()
 
+  },
+
+  methods: {
+    urlWithCors(url) {
+      return this.cors + url
+    }
   }
 }
 </script>
