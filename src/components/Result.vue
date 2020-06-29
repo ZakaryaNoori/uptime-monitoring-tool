@@ -72,7 +72,12 @@ export default {
     this.url = this.$route.query.url
     let newUrl = this.parseURL(this.$route.query.url)
 
+    if(!newUrl.hostname.includes("www")) {
+      this.hostname = newUrl.hostname.split(".")[0]
+      return
+    }
     this.hostname = newUrl.hostname.split(".")[1]
+    console.log(newUrl);
     let time = new Date()
 
     let xhr = new XMLHttpRequest()
