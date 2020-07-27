@@ -67,6 +67,7 @@ export default {
     checkForm(e) {
       this.errors = []
 
+      // check for empty and invalid URL
       if(!this.url) {
         this.errors.push('URL field cant be empty')
         return
@@ -76,6 +77,7 @@ export default {
       }
 
       e.preventDefault()
+
       if (!localStorage.getItem('urls')) {
         localStorage.setItem('urls', JSON.stringify([this.url]))
         return
@@ -113,10 +115,10 @@ export default {
     }
   },
 
-  watch: {
-    url(value) {
-      this.validUrl(value)
-    }
-  }
+  // watch: {
+  //   url(value) {
+  //     this.validUrl(value)
+  //   }
+  // }
 }
 </script>

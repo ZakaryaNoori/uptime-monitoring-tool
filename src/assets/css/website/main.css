@@ -1,12 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 html {
   font-size: 62.5%; }
-  @media only screen and (max-width: 1024px) {
-    html {
-      font-size: 58.5%; } }
-  @media only screen and (max-width: 425px) {
-    html {
-      font-size: 50%; } }
 
 body {
   margin: 0;
@@ -24,10 +18,11 @@ body {
 
 .main-heading {
   font-size: 9rem;
-  line-height: 1; }
+  line-height: 1;
+  word-break: break-all; }
 
 .secondary-heading {
-  font-size: 9.5rem;
+  font-size: 4.5rem;
   line-height: 1.25;
   font-weight: 500; }
 
@@ -53,6 +48,9 @@ body {
   .form-control::placeholder {
     color: #bebfc0;
     font-size: 1.4rem; }
+    @media only screen and (max-width: 1376px) {
+      .form-control::placeholder {
+        font-size: 1.8rem; } }
 
 .list {
   list-style: none; }
@@ -94,6 +92,9 @@ body {
   word-break: break-all;
   height: 22vh;
   font-size: 1.6rem; }
+  @media only screen and (max-width: 1376px) {
+    .url-item {
+      font-size: 2rem; } }
 
 .success-response {
   background-color: #49D27B;
@@ -115,7 +116,8 @@ body {
 
 #app {
   height: 100vh;
-  font-size: 1.4rem; }
+  font-size: 1.4rem;
+  overflow: hidden; }
 
 .info-box {
   margin-bottom: 20vh;
@@ -132,6 +134,9 @@ body {
   height: 100%; }
   #home p {
     font-size: 1.6rem; }
+    @media only screen and (max-width: 1376px) {
+      #home p {
+        font-size: 2rem; } }
   #home .check-btn {
     position: absolute;
     right: 10px;
