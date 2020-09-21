@@ -31,7 +31,7 @@
             <div class="p-5 d-flex align-items-center justify-content-center h-100">
               <ul class="row list w-100 p-0">
                 <li v-for="(url, index) in urls" :key="index" class="col-lg-4 col-md-6 col-sm-12 col-xlg-3">
-                  <div class="p-5 url-item d-flex align-items-center" :style="{backgroundColor : colors[Math.round(Math.random() * 2)]}">
+                  <div class="p-5 url-item d-flex align-items-center" :style="{ backgroundColor : colors[Math.round(Math.random() * 2)] }">
                     {{ url }}
                   </div>
                 </li>
@@ -67,28 +67,32 @@ export default {
     checkForm(e) {
       this.errors = []
 
+      // check for empty and invalid URL
       if(!this.url) {
         this.errors.push('URL field cant be empty')
-        return false
+        return
       } else if (!this.validUrl(this.url)) {
         this.errors.push('Valid url required.');
-        return false
+        return
       }
 
       e.preventDefault()
-      if(localStorage.getItem('urls')) {
-        let urls = JSON.parse(localStorage.getItem('urls'))
-        if(!urls.includes(this.url) && urls.length < 6) {
-          urls.push(this.url)
-          localStorage.setItem('urls', JSON.stringify(urls))
-        } else if(urls.length == 6) {
-          urls.shift()
-          urls.push(this.url)
-          localStorage.setItem('urls', JSON.stringify(urls))
-        }
-      } else {
+
+      if (!localStorage.getItem('urls')) {
         localStorage.setItem('urls', JSON.stringify([this.url]))
+        return
       }
+
+      let urls = JSON.parse(localStorage.getItem('urls'))
+      if(!urls.includes(this.url) && urls.length < 6) {
+        urls.push(this.url)
+        localStorage.setItem('urls', JSON.stringify(urls))
+      } else if(urls.length == 6) {
+        urls.shift()
+        urls.push(this.url)
+        localStorage.setItem('urls', JSON.stringify(urls))
+      }
+
       this.$router.push({ path: 'result', query: { url: this.url } })
       return true
     },
@@ -107,15 +111,14 @@ export default {
     },
     getRandomColor() {
       let randOneToSix = Math.floor(Math.random() * 3) + 1
-      console.log('fdsjlk');
       return this.colors[randOneToSix]
     }
   },
 
-  watch: {
-    url(value) {
-      this.validUrl(value)
-    }
-  }
+  // watch: {
+  //   url(value) {
+  //     this.validUrl(value)
+  //   }
+  // }
 }
 </script>

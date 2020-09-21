@@ -52,6 +52,9 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <div class="h-100 d-flex align-items-end justify-content-center p-5" style="background-color: #2CA58D"></div>
+        </div>
       </div>
   </div>
 </template>
@@ -72,7 +75,9 @@ export default {
     this.url = this.$route.query.url
     let newUrl = this.parseURL(this.$route.query.url)
 
-    this.hostname = newUrl.hostname.split(".")[1]
+    this.hostname = this.$route.query.url
+    console.log(this.parseURL(this.$route.query.url));
+
     let time = new Date()
 
     let xhr = new XMLHttpRequest()
