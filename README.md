@@ -1,6 +1,6 @@
 # uptime-monitoring-tool
 
-> A Vue.js project
+> checks if a website is up or down and shows up time response time
 
 ## Build Setup
 
